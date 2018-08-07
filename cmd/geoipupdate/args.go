@@ -1,33 +1,33 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"os"
+
+	flags "github.com/jessevdk/go-flags"
 )
 
 // Args are command line arguments.
 type Args struct {
-	ConfigFile        string
-	DatabaseDirectory string
-	StackTrace        bool
-	Verbose           bool
+	ConfigFile        string `short:"f" description:"Configuration file (required)"`
+	DatabaseDirectory string `short:"d" description:"Store databases in this directory (optional)"`
+	StackTrace        bool   `long:"stack-trace" description:"Show a stack trace along with any error message"`
+	Verbose           bool   `short:"v" description:"Use verbose output"`
+	Version           bool   `short:"V" description:"Display the version and exit"`
 }
 
 func getArgs() *Args {
-	configFile := flag.String("f", "", "Configuration file (required)")
-	databaseDirectory := flag.String("d", "", "Store databases in this directory (optional)")
-	help := flag.Bool("h", false, "Display help and exit")
-	stackTrace := flag.Bool("stack-trace", false, "Show a stack trace along with any error message.")
-	verbose := flag.Bool("v", false, "Use verbose output")
-	version := flag.Bool("V", false, "Display the version and exit")
-
-	flag.Parse()
-
-	if *help {
-		printUsage()
+	args := &Args{}
+	_, err := flags.Parse(args)
+	if err != nil {
+		if flagsErr, ok := err.(*flags.Error); ok && flagsErr.Type == flags.ErrHelp {
+			os.Exit(0)
+		} else {
+			os.Exit(1)
+		}
 	}
-	if *version {
+
+	if args.Version {
 		log.Printf("geoipupdate %s", Version)
 		os.Exit(0)
 	}
@@ -37,16 +37,5 @@ func getArgs() *Args {
 		printUsage()
 	}
 
-	return &Args{
-		ConfigFile:        *configFile,
-		DatabaseDirectory: *databaseDirectory,
-		StackTrace:        *stackTrace,
-		Verbose:           *verbose,
-	}
-}
-
-func printUsage() {
-	log.Printf("Usage: %s <arguments>\n", os.Args[0])
-	flag.PrintDefaults()
-	os.Exit(1)
+	return args
 }
