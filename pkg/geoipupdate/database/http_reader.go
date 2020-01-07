@@ -10,8 +10,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/maxmind/geoipupdate/pkg/geoipupdate"
 	"github.com/pkg/errors"
+	"github.com/vyh/geoipupdate/pkg/geoipupdate"
 )
 
 // HTTPDatabaseReader is a Reader that uses an HTTP client to retrieve

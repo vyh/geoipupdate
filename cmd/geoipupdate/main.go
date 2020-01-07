@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/maxmind/geoipupdate/pkg/geoipupdate"
-	"github.com/maxmind/geoipupdate/pkg/geoipupdate/database"
-	"github.com/pkg/errors"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/pkg/errors"
+	"github.com/vyh/geoipupdate/pkg/geoipupdate"
+	"github.com/vyh/geoipupdate/pkg/geoipupdate/database"
 )
 
 var (
