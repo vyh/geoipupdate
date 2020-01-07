@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/vyh/geoipupdate/pkg/geoipupdate"
+	"github.com/vyh/geoipupdate/v4/pkg/geoipupdate"
 )
 
 // HTTPDatabaseReader is a Reader that uses an HTTP client to retrieve

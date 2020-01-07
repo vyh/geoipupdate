@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 
 	"github.com/pkg/errors"
-	"github.com/vyh/geoipupdate/pkg/geoipupdate"
-	"github.com/vyh/geoipupdate/pkg/geoipupdate/database"
+	"github.com/vyh/geoipupdate/v4/pkg/geoipupdate"
+	"github.com/vyh/geoipupdate/v4/pkg/geoipupdate/database"
 )
 
 var (
